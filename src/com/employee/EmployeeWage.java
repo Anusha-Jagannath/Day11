@@ -5,15 +5,18 @@ public class EmployeeWage {
 	final static int IS_PART_TIME = 1;
 	final static int WAGE_PER_HOUR = 20;
 	final static int NO_OF_DAYS = 20;
-
+	final static int MAX_HOUR = 100;
+    final static int NO_OF_WORKING_DAYS = 20;
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee wage computation");
 		// constants
 		int empWage = 0;
 		int empHrs = 0;
 		int totalWage = 0;
-		for (int days = 0; days < NO_OF_DAYS; days++) {
-			// computation
+		int totalWorkingDays = 0;
+		int totalWorkingHrs = 0;
+		while(totalWorkingDays < NO_OF_WORKING_DAYS && totalWorkingHrs <= MAX_HOUR ) {
+			totalWorkingDays++;
 			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
 			case 2:
@@ -27,6 +30,7 @@ public class EmployeeWage {
 
 			}
 			empWage = empHrs * WAGE_PER_HOUR;
+			totalWorkingHrs += empHrs;
 			totalWage += empWage;
 		}
 
