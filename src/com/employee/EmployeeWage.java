@@ -1,40 +1,57 @@
 package com.employee;
 
-public class EmployeeWage {
-	final static int IS_FULL_TIME = 2;
-	final static int IS_PART_TIME = 1;
-	final static int WAGE_PER_HOUR = 20;
-	final static int NO_OF_DAYS = 20;
-	final static int MAX_HOUR = 100;
-    final static int NO_OF_WORKING_DAYS = 20;
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee wage computation");
-		// constants
-		int empWage = 0;
-		int empHrs = 0;
-		int totalWage = 0;
+class Employee {
+	private int isFullTime;
+	private int isPartTime;
+	private int wagePerHour;
+	private int empWage;
+	private int empHrs;
+	private int noOfWorkingDays;
+	private int totalWage;
+	private static int empCheck;
+	private int maxHrs;
+	
+	private int totalWorkingHrs;
+
+	Employee() {
+		isFullTime = 2;
+		isPartTime = 1;
+		wagePerHour = 20;
+		noOfWorkingDays = 20;
+		maxHrs = 10;
+		empWage = 0;
+		empHrs = 0;
+		totalWage = 0;
+		totalWorkingHrs = 0;
+	}
+
+	public void isPresent() {
 		int totalWorkingDays = 0;
-		int totalWorkingHrs = 0;
-		while(totalWorkingDays < NO_OF_WORKING_DAYS && totalWorkingHrs <= MAX_HOUR ) {
+		while(totalWorkingDays < noOfWorkingDays && totalWorkingHrs <= maxHrs ) {
 			totalWorkingDays++;
-			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			empCheck = (int) Math.floor(Math.random() * 10 % 3);
 			switch (empCheck) {
-			case 2:
-				empHrs = 8;
-				break;
-			case 1:
-				empHrs = 4;
-				break;
-			default:
-				empHrs = 0;
+			case 2: empHrs = 8;
+					break;
+			case 1: empHrs = 4;
+					break;
+			default: empHrs = 0;
 
 			}
-			empWage = empHrs * WAGE_PER_HOUR;
+			empWage = empHrs * wagePerHour;
 			totalWorkingHrs += empHrs;
 			totalWage += empWage;
 		}
-
-		System.out.println("Total Employee wage is " + totalWage);
-
+		System.out.println("Total Employee wage " + totalWage);
 	}
+
+}
+
+public class EmployeeWage {
+	public static void main(String[] args) {
+		System.out.println("Welcome to Employee Wage Computation program");
+		Employee employee = new Employee();
+		employee.isPresent();
+	}
+	
 }
