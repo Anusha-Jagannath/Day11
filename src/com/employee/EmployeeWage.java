@@ -5,23 +5,25 @@ import java.util.Scanner;
 class Employee {
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
-	public static int wagePerHour;
-	public static int empWage;
-	public static int empHrs;
-	public static int noOfWorkingDays;
-	public static int totalWage;
-	public static int empCheck;
-	public static int maxHrs;
 	
+	private final String company;
+	private final int wagePerHour;
+	private int empWage;
+	private int empHrs;
+	private final int noOfWorkingDays;
+	private int totalWage;
+	private int empCheck;
+	private final int maxHrs;
 	private int totalWorkingHrs;
 
-	Employee(int wagePerHour,int noOfWorkingDays,int maxHrs) {
+	Employee(String company,int wagePerHour,int noOfWorkingDays,int maxHrs) {
+		this.company = company;
 		this.wagePerHour = wagePerHour;
 		this.noOfWorkingDays = noOfWorkingDays;
 		this.maxHrs = maxHrs;
 	}		
 
-	public void computeWage() {
+	public void wageForCompany() {
 		int totalWorkingDays = 0;
 		while(totalWorkingDays < noOfWorkingDays && totalWorkingHrs <= maxHrs ) {
 			totalWorkingDays++;
@@ -38,26 +40,30 @@ class Employee {
 			totalWorkingHrs += empHrs;
 			totalWage += empWage;
 		}
-		System.out.println("Total Employee wage " + totalWage);
+		System.out.println("Total Employee wage for company "+company+" is " + totalWage);
 	}
 
 }
 
 public class EmployeeWage {
 	public static void main(String[] args) {
+		String company;
 		int wagePerHour, noOfWorkingDays, maxHrs;
 		System.out.println("Welcome to Employee Wage Computation program");
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner1 = new Scanner(System.in);
+		Scanner scanner2 = new Scanner(System.in);
+		System.out.println("Enter the company name");
+		company = scanner2.nextLine();
 		System.out.println("Enter wage per hour for the company");
-		wagePerHour = scanner.nextInt();
+		wagePerHour = scanner2.nextInt();
 		
 		System.out.println("Enter no of working days");
-		noOfWorkingDays = scanner.nextInt();
+		noOfWorkingDays = scanner1.nextInt();
 		
 		System.out.println("Enter working hours");
-		maxHrs = scanner.nextInt();
-		Employee employee = new Employee(wagePerHour,noOfWorkingDays,maxHrs);
-		employee.computeWage();
+		maxHrs = scanner1.nextInt();
+		Employee employee = new Employee(company,wagePerHour,noOfWorkingDays,maxHrs);
+		employee.wageForCompany();
 		
 	}
 	
