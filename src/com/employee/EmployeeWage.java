@@ -47,21 +47,6 @@ class Employee {
 
 public class EmployeeWage {
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		int wagePerHour, noOfWorkingDays, maxHrs;
-		System.out.println("Welcome to Employee Wage Computation program");
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter wage per hour for the company");
-		wagePerHour = scanner.nextInt();
-		
-		System.out.println("Enter no of working days");
-		noOfWorkingDays = scanner.nextInt();
-		
-		System.out.println("Enter working hours");
-		maxHrs = scanner.nextInt();
-		Employee employee = new Employee(wagePerHour,noOfWorkingDays,maxHrs);
-		employee.computeWage();
-=======
 		String company;
 		int wagePerHour, noOfWorkingDays, maxHrs;
 		System.out.println("Welcome to Employee Wage Computation program");
@@ -79,7 +64,6 @@ public class EmployeeWage {
 		maxHrs = scanner1.nextInt();
 		Employee employee = new Employee(company,wagePerHour,noOfWorkingDays,maxHrs);
 		employee.wageForCompany();
->>>>>>> uc8_multiple_company_wage
 		
 	}
 	
