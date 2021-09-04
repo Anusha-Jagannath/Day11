@@ -2,6 +2,7 @@ package com.employee;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ class Employee implements ComputeInterface {
 	private int empCheck;
 	private int totalWorkingHrs;
 	List<Company> companies;
+	HashMap<String, Integer> hashmap = new HashMap<>();
 
 	Employee() {
 		companies = new ArrayList<>();
@@ -63,14 +65,22 @@ class Employee implements ComputeInterface {
 
 			}
 			empWage = empHrs * company.getWagePerHour();
-			System.out.println("Daily wage for company "+company.getCompany()+" is "+empWage);
+			System.out.println("Daily wage for company " + company.getCompany() + " is " + empWage);
 			totalWorkingHrs += empHrs;
 			totalWage += empWage;
 			company.setDailyWage(empWage);
 		}
-		System.out.println("Total Employee wage for company " + company.getCompany() + " is " + totalWage);
+		System.out.println("Total Employee wage for company " + company.getCompany() + " is "+"\n" + totalWage);
 		company.setTotalWage(totalWage);
-		System.out.println();
+		hashmap.put(company.getCompany(), totalWage);
+	}
+	/*
+	 * method to find the salary of respective company Hash map is used to store
+	 * company name and corresponding salary
+	 */
+
+	public void querySalary(String name) {
+		System.out.println(hashmap.get(name));
 	}
 
 }
@@ -81,6 +91,10 @@ public class EmployeeWage {
 		employee.addCompany("Jio", 20, 20, 100);
 		employee.addCompany("Dmart", 20, 10, 100);
 		employee.computeEmpWage();
+		System.out.println("Enter the company name to query salary");
+		Scanner scanner = new Scanner(System.in);
+		String name = scanner.nextLine();
+		employee.querySalary(name);
 
 	}
 
