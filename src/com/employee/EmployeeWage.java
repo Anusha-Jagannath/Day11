@@ -1,8 +1,9 @@
 package com.employee;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-class Employee {
+class Employee implements ComputeInterface{
 	// constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
@@ -23,7 +24,7 @@ class Employee {
 	/*
 	 * method to add company
 	 * 
-	 * @param company,wageperhour,noOfWorkingDays,maxHour
+	 * @param company,wage per hour,no of working days,maxHour
 	 */
 	public void addCompany(String company, int wagePerHour, int noOfWorkingHours, int maxHourPerMonth) {
 		companies[noOfCompany] = new Company(company, wagePerHour, noOfWorkingHours, maxHourPerMonth);
@@ -71,8 +72,12 @@ class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [totalWage=" + totalWage + "]";
+		return "Employee [empWage=" + empWage + ", empHrs=" + empHrs + ", totalWage=" + totalWage + ", empCheck="
+				+ empCheck + ", totalWorkingHrs=" + totalWorkingHrs + ", companies=" + Arrays.toString(companies)
+				+ ", noOfCompany=" + noOfCompany + "]";
 	}
+
+	
 }
 
 public class EmployeeWage {
