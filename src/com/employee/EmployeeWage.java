@@ -50,9 +50,7 @@ class Employee {
 }
 
 public class EmployeeWage {
-	public static void main(String[] args) {
-
-
+	public static void main(String[] args){
 		String company;
 		int wagePerHour, noOfWorkingDays, maxHrs;
 		System.out.println("Welcome to Employee Wage Computation program");
@@ -71,7 +69,6 @@ public class EmployeeWage {
 		Employee employee = new Employee(company,wagePerHour,noOfWorkingDays,maxHrs);
 		employee.wageForCompany();
 		System.out.println(employee);
-
 		
 	}
 	
