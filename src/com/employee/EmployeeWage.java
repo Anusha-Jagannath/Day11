@@ -10,7 +10,6 @@ class Employee implements ComputeInterface {
 	// constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
-
 	// variables
 	private int empWage;
 	private int empHrs;
@@ -18,6 +17,7 @@ class Employee implements ComputeInterface {
 	private int empCheck;
 	private int totalWorkingHrs;
 	List<Company> companies;
+	// hashmap stores company name and salary
 	HashMap<String, Integer> hashmap = new HashMap<>();
 
 	Employee() {
@@ -70,7 +70,7 @@ class Employee implements ComputeInterface {
 			totalWage += empWage;
 			company.setDailyWage(empWage);
 		}
-		System.out.println("Total Employee wage for company " + company.getCompany() + " is "+"\n" + totalWage);
+		System.out.println("Total Employee wage for company " + company.getCompany() + " is " + totalWage);
 		company.setTotalWage(totalWage);
 		hashmap.put(company.getCompany(), totalWage);
 	}
