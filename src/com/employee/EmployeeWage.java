@@ -3,44 +3,70 @@ package com.employee;
 import java.util.Scanner;
 
 class Employee {
+	// constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
-	
-	private final String company;
-	private final int wagePerHour;
+
+	// variables
 	private int empWage;
 	private int empHrs;
-	private final int noOfWorkingDays;
-	private int totalWage;
+	private int totalWage = 0;
 	private int empCheck;
-	private final int maxHrs;
 	private int totalWorkingHrs;
+	private Company[] companies;
+	private int noOfCompany;
 
-	Employee(String company,int wagePerHour,int noOfWorkingDays,int maxHrs) {
-		this.company = company;
-		this.wagePerHour = wagePerHour;
-		this.noOfWorkingDays = noOfWorkingDays;
-		this.maxHrs = maxHrs;
-	}		
+	Employee() {
+		companies = new Company[5];
+	}
 
-	public void wageForCompany() {
+	/*
+	 * method to add company
+	 * 
+	 * @param company,wageperhour,noOfWorkingDays,maxHour
+	 */
+	public void addCompany(String company, int wagePerHour, int noOfWorkingHours, int maxHourPerMonth) {
+		companies[noOfCompany] = new Company(company, wagePerHour, noOfWorkingHours, maxHourPerMonth);
+		noOfCompany++;
+	}
+
+	/*
+	 * method to to call wageForCompany
+	 */
+	public void computeEmpWage() {
+		for (int i = 0; i < noOfCompany; i++) {
+			Company company = companies[i];
+			wageForCompany(company);
+		}
+	}
+
+	/*
+	 * method to compute wage
+	 * 
+	 * @param company object
+	 */
+	public void wageForCompany(Company company) {
 		int totalWorkingDays = 0;
-		while(totalWorkingDays < noOfWorkingDays && totalWorkingHrs <= maxHrs ) {
+
+		while (totalWorkingDays < company.getNoOfWorkingDays() && totalWorkingHrs <= company.getMaxHourPerMonth()) {
 			totalWorkingDays++;
 			empCheck = (int) Math.floor(Math.random() * 10 % 3);
 			switch (empCheck) {
-			case IS_FULL_TIME: empHrs = 8;
-					break;
-			case IS_PART_TIME: empHrs = 4;
-					break;
-			default: empHrs = 0;
+			case IS_FULL_TIME:
+				empHrs = 8;
+				break;
+			case IS_PART_TIME:
+				empHrs = 4;
+				break;
+			default:
+				empHrs = 0;
 
 			}
-			empWage = empHrs * wagePerHour;
+			empWage = empHrs * company.getWagePerHour();
 			totalWorkingHrs += empHrs;
 			totalWage += empWage;
 		}
-		System.out.println("Total Employee wage for company "+company+" is " + totalWage);
+		System.out.println("Total Employee wage for company " + company.getCompany() + " is " + totalWage);
 	}
 
 	@Override
@@ -50,26 +76,12 @@ class Employee {
 }
 
 public class EmployeeWage {
-	public static void main(String[] args){
-		String company;
-		int wagePerHour, noOfWorkingDays, maxHrs;
-		System.out.println("Welcome to Employee Wage Computation program");
-		Scanner scanner1 = new Scanner(System.in);
-		Scanner scanner2 = new Scanner(System.in);
-		System.out.println("Enter the company name");
-		company = scanner2.nextLine();
-		System.out.println("Enter wage per hour for the company");
-		wagePerHour = scanner2.nextInt();
-		
-		System.out.println("Enter no of working days");
-		noOfWorkingDays = scanner1.nextInt();
-		
-		System.out.println("Enter working hours");
-		maxHrs = scanner1.nextInt();
-		Employee employee = new Employee(company,wagePerHour,noOfWorkingDays,maxHrs);
-		employee.wageForCompany();
-		System.out.println(employee);
-		
+	public static void main(String[] args) {
+		Employee employee = new Employee();
+		employee.addCompany("Jio", 20, 20, 100);
+		employee.addCompany("Dmart", 20, 10, 100);
+		employee.computeEmpWage();
+
 	}
-	
+
 }
