@@ -63,17 +63,21 @@ class Employee implements ComputeInterface {
 
 			}
 			empWage = empHrs * company.getWagePerHour();
+			System.out.println("Daily wage for company "+company.getCompany()+" is "+empWage);
 			totalWorkingHrs += empHrs;
 			totalWage += empWage;
+			company.setDailyWage(empWage);
 		}
 		System.out.println("Total Employee wage for company " + company.getCompany() + " is " + totalWage);
+		company.setTotalWage(totalWage);
+		System.out.println();
 	}
 
 }
 
 public class EmployeeWage {
 	public static void main(String[] args) {
-		Employee employee = new Employee();
+		ComputeInterface employee = new Employee();
 		employee.addCompany("Jio", 20, 20, 100);
 		employee.addCompany("Dmart", 20, 10, 100);
 		employee.computeEmpWage();
